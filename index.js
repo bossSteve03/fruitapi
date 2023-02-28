@@ -34,7 +34,7 @@ app.get('/fruits/:id', (req, res) => {
         allfruits += ', ' + fruits[i]['name']
     };
     let wrongname = `ERROR 404:\nTHATS NOT A FRUIT! Please choose one of the following:\n ${allfruits}`
-    if(obj) res.status(201).send(obj)
+    if(obj) res.status(200).send(obj)
     else res.status(404).send(wrongname)
 })
 
@@ -44,7 +44,7 @@ app.post("/fruits", (req, res) => {
     let obj = fruits.find(o => o.name.toLowerCase() === req.body['name'].toLowerCase());
     //if fruit doesnt exist process with req.body to add fruit to data
     if(!obj) {
-        res.status(200).send('Fruit added successfully');
+        res.status(201).send('Fruit added successfully');
         fruits.push(req.body);
         fs.writeFileSync('./fruits.json', JSON.stringify(fruits))
     }
