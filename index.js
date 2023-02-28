@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const fruits = require('./fruits.json')
 const fs = require('fs');
