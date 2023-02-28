@@ -28,8 +28,7 @@ app.get('/fruits', (req, res) => {
 app.get('/fruits/:id', (req, res) => {
     let id = req.params.id;
     id = id.toLowerCase();
-    id = id.charAt(0).toUpperCase() + id.slice(1);
-    let obj = fruits.find(o => o.name === id);
+    let obj = fruits.find(o => o.name.toLowerCase() === id);
     let allfruits = `${fruits[0]['name']}`
     for(let i =1; i < fruits.length; i++){
         allfruits += ', ' + fruits[i]['name']
