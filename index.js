@@ -5,6 +5,8 @@ const app = express();
 const fruits = require('./fruits.json')
 const fs = require('fs');
 const port = process.env.PORT;
+
+app.use(cors());
 app.use(express.json());
 
 //Home route
