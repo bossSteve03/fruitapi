@@ -41,7 +41,7 @@ app.get('/fruits/:id', (req, res) => {
 app.post("/fruits", (req, res) => {
     console.log(req.body['name'])
     //check it doesnt already exist to avoid duplication
-    let obj = fruits.find(o => o.name === req.body['name']);
+    let obj = fruits.find(o => o.name.toLowerCase() === req.body['name'].toLowerCase());
     //if fruit doesnt exist process with req.body to add fruit to data
     if(!obj) {
         res.status(200).send('Fruit added successfully');
