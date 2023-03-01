@@ -50,4 +50,20 @@ app.post("/fruits", (req, res) => {
     else res.status(404).send('Fruit already exists')
 })
 
+app.post("/fruits", (req, res) => {
+    console.log(req.body['name'])
+    //check it doesnt already exist to avoid duplication
+    let obj = fruits.find(o => o.name.toLowerCase() === req.body['name'].toLowerCase());
+    //if fruit doesnt exist process with req.body to add fruit to data
+    if(obj) {
+        res.status(201).send('Fruit removed successfully');
+        fruits.push(req.body);
+        let data = fs.readFileSync('./fruits.json');
+        let removable = data.toLowerCase().indexOf(req.body['name'].toLowerCase())
+        data.splice(removable, 1)
+        fs.writeFileSync('./fruits.json', JSON.stringify(data))
+    }
+    //if fruit does exist return an error
+    else res.status(404).send('Fruit already doesn\'t exist')
+})
 module.exports = app;
