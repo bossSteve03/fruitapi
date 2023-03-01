@@ -50,7 +50,7 @@ app.post("/fruits", (req, res) => {
     else res.status(404).send('Fruit already exists')
 })
 
-app.post("/fruits", (req, res) => {
+app.delete("/fruits", (req, res) => {
     console.log(req.body['name'])
     //check it already exist to avoid errors
     let obj = fruits.find(o => o.name.toLowerCase() === req.body['name'].toLowerCase());
